@@ -1,24 +1,20 @@
 import express from "express";
 import dotenv from "dotenv"
-import authRoutes from "./Routes/routh"
-dotenv.config();
-
-
-
+import authRoutes from "./Routes/route.js"
+import connectToMongo from "./DB/connectDb.js";
 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-app.get('/', (req,res) => {
-    res.send("Hello world !")
-})
+dotenv.config();
 
 //Midddleware
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
+app.use(express.json());
 
 
 
 app.listen(PORT, () => {
+    connectToMongo();
     console.log(`server listening on ${PORT}`);
 })
