@@ -3,10 +3,12 @@ import dotenv from "dotenv"
 import authRoutes from "./Routes/route.js"
 import connectToMongo from "./DB/connectDb.js";
 import MessageRoutes from "./Routes/message.js"
+import cookieParser from "cookie-parser";
 
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
