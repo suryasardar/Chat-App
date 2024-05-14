@@ -22,11 +22,13 @@ const sendMessage = async (req, res) => {
             receiverId,
             message,
         })
+        console.log(newMessage,"m");
         if (newMessage) {
-            conversation.messages.push(newMessage._id);
+             DM.messages.push(newMessage._id);
         }
-        await conversation.save();
-        await newMessage.save();
+        // await DM.save();
+        // await newMessage.save();
+        await Promise.all([DM.save(), newMessage.save()]);
         res.status(201).json(newMessage);
 
     } catch (error) {
