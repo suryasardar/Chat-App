@@ -1,3 +1,4 @@
+import { Input } from "postcss";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -11,7 +12,7 @@ const useSignup = async () => {
     confirmpassword,
     gender,
   }) => {
-      
+      console.log(Input);
       const success = HandleInputError({
           fullname,
           username,
@@ -66,5 +67,5 @@ const HandleInputError = ({
   if (password.length < 6) {
     toast.error("password must be at least 6 characters");
   }
-  return success;
+  return true;
 };

@@ -5,6 +5,7 @@ import useSignup from "../ hooks/useSignup";
 
 const Signup = () => {
   const { loading, Signups } = useSignup();
+  console.log(Signups);
 
   const [Input, setInput] = useState({
     fullName: "",
@@ -16,6 +17,7 @@ const Signup = () => {
 
   const Handlesubmit = async (e) => {
     e.preventDefault();
+    console.log(Input);
     await Signups(Input);
   };
 
