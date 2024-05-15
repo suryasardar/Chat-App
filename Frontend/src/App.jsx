@@ -3,6 +3,7 @@ import './App.css'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   
@@ -10,11 +11,15 @@ function App() {
   return (
     <>
       <div className=' h-screen m-2'>
-
-       <Home/>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+        </Routes>
+        <Toaster/>
+       
       </div>
-        {/* <Login />
-        <Signup/> */}
+         
        
     </>
   )
