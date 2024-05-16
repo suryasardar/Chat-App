@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv"
+import cors from "cors"
 import authRoutes from "./Routes/route.js"
 import connectToMongo from "./DB/connectDb.js";
 import MessageRoutes from "./Routes/message.js";
@@ -9,6 +10,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 //Midddleware
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 5000;

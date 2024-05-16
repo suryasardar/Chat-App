@@ -1,61 +1,72 @@
 import { Input } from "postcss";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { json } from "react-router-dom";
+import { useAuthContext } from "../context/Authcontext";
 
-const useSignup = async () => {
+const useSignup = () => {
   const [loading, setloading] = useState(false);
-
-  const signups = async({
-    fullname,
+  const { setAuthUser} = useAuthContext();
+  const signups = async ({
+    fullName,
     username,
     password,
     confirmpassword,
     gender,
   }) => {
-      console.log(Input);
-      const success = HandleInputError({
-          fullname,
+    console.log(fullName, username, password, confirmpassword, gender);
+    const success = HandleInputError({
+      fullName,
+      username,
+      password,
+      confirmpassword,
+      gender,
+    });
+    if (!success) return false;
+
+    setloading(true);
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName,
           username,
           password,
           confirmpassword,
           gender,
-        });
-        if (!success) return;
-        
-        setloading(true);
-        try {
-            const response = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    fullname,
-                    username,
-                    password,
-                    confirmpassword,
-                    gender,
-                }),
-            });
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            toast.error(error.message);
-        } finally {
-            setloading(false);
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+        const data = await response.json();
+        if (data.error) {
+            throw new Error(data.error);
         }
-  }
-    return {loading,signups}
-    };
-    
-    export default useSignup;
-    
+      localStorage.setItem("chat-user", json.stringify(data))
+      setAuthUser(data);
+      console.log(data);
+    } catch (error) {
+        toast.error(error.message);
+        console.log(error.message,"sjdfjsdfjj");
+    } finally {
+      setloading(false);
+    }
+  };
+  return { loading, signups };
+};
+
+export default useSignup;
+
 const HandleInputError = ({
-  fullname,
+  fullName,
   username,
   password,
   confirmpassword,
   gender,
 }) => {
-  if (!fullname || !username || !password || !confirmpassword || !gender) {
+  if (!fullName || !username || !password || !confirmpassword || !gender) {
     toast.error("Please Fill in all Fields");
     return false;
   }

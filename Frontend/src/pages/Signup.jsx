@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import useSignup from "../ hooks/useSignup";
 
 const Signup = () => {
-  const { loading, Signups } = useSignup();
-  console.log(Signups);
+  const {loading, signups } = useSignup();
+  console.log(signups,loading, "ok");
 
   const [Input, setInput] = useState({
     fullName: "",
@@ -15,10 +15,11 @@ const Signup = () => {
     gender: "",
   });
 
+  console.log(Input, "input");
   const Handlesubmit = async (e) => {
     e.preventDefault();
-    console.log(Input);
-    await Signups(Input);
+    console.log("surya");
+    await signups(Input);
   };
 
   const HandleCheckBox = (gender) => {
@@ -168,7 +169,7 @@ const Signup = () => {
                   <div className="mb-6 text-center">
                     <button
                       className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                      type="button"
+                      type="submit"
                     >
                       Register Account
                     </button>
