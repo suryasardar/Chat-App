@@ -40,7 +40,8 @@ const Signupuser = async (req, res) => {
            _id: newUser._id,
            fullName:newUser.fullName,
            username: newUser.username,
-           profilePic:newUser.profilePic
+           profilePic: newUser.profilePic,
+           token:newUser.token
        })
         } else {
             res.status(404).json({ error :"Invalid data"});

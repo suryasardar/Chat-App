@@ -7,7 +7,9 @@ function useLogin() {
     const [loading, setloading] = useState(false);
     
     const { setAuthUser } = useAuthContext();
-       const login = async (username,) => {
+    const login = async (username, password) => {
+        const success = HandleInputError(username,password);
+          if (!success) return false;
            setloading(true);
            try {
                const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -31,4 +33,20 @@ function useLogin() {
        return {loading,login}
   }
 
-export default useLogin
+export default useLogin;
+
+
+
+
+const HandleInputError = (username,password) => {
+    if (!username || !password ) {
+      toast.error("Please Fill in all Fields");
+      return false;
+    }
+  
+    if (password.length < 6) {
+      toast.error("password must be at least 6 characters");
+    }
+    return true;
+  };
+  

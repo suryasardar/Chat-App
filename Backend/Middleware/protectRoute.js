@@ -1,10 +1,15 @@
 import jwt from "jsonwebtoken";
 import User from "../Models/usermodel.js";
+import GenarateJwt from "../utils/generatetoken.js";
+ 
 
-const protectRoute =async (req, res, next) => {
+const protectRoute = async (req, res, next) => {
+  // const {Jtoken} = GenarateJwt();
     try {
+      console.log(req.auth);
+      const token = req.Cookies.auth;
       
-    const token = req.cookies.jwt;
+      console.log(token,"token");
     if (!token) {
       return res.status(401).json({ error: "No Token" });
     }
