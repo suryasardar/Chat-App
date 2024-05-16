@@ -6,6 +6,7 @@ import GenarateJwt from "../utils/generatetoken.js";
 const Loginuser = async (req, res) => {
    try {
       const { username, password } = req.body;
+      console.log(username,password);
 
       const user = await User.findOne({ username });
        console.log(user.password,"user");

@@ -37,14 +37,16 @@ const useSignup = () => {
           gender,
         }),
       });
+      const data = await response.json();
+      console.log(data);
+
       if (!response.ok) {
         throw new Error(`HTTP error ${response.status}`);
       }
-        const data = await response.json();
         if (data.error) {
             throw new Error(data.error);
         }
-      localStorage.setItem("chat-user", json.stringify(data))
+      localStorage.setItem("chat-user", JSON.stringify(data))
       setAuthUser(data);
       console.log(data);
     } catch (error) {

@@ -7,7 +7,7 @@ const Signupuser = async (req, res) => {
      
       
        const { fullName, username, password, confirmpassword, gender } = req.body;
-       
+       console.log(fullName, username, password, confirmpassword, gender);
        //
        if (password !== confirmpassword) {
            return res.status(400).json({error:"passwords don't match"})
