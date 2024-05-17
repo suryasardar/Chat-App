@@ -17,7 +17,10 @@ function useLogin() {
                    headers: { "content-Type": "application/json" },
                    body:JSON.stringify({username,password})
                });
-               const data = await response.json();
+             const data = await response.json();
+             console.log(data.token);
+             sessionStorage.setItem('token', data.token);
+
                if (data.error) {
                    throw new Error(data.error);
                }

@@ -1,18 +1,17 @@
 import jwt from "jsonwebtoken";
 import User from "../Models/usermodel.js";
-import GenarateJwt from "../utils/generatetoken.js";
+// import token from "../utils/generatetoken.js";
  
 
 const protectRoute = async (req, res, next) => {
   // const {Jtoken} = GenarateJwt();
-    try {
-      // console.log(req.auth);
-      const token = req.cookies.auth;
-      // const token = req.session.token;
-      // const token = Jtoken;
-      
-      
-      console.log(token,"token");
+  try {
+    if (!req.headers.authorization) {
+      return res.status(401).json({ error: 'Authorization header missing' });
+    }
+      const token = req.headers.authorization.split(' ')[1];
+    console.log(token, "token");
+    
     if (!token) {
       return res.status(401).json({ error: "No Token" });
     }

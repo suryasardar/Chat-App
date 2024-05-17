@@ -1,7 +1,7 @@
 import express from "express";
-import dotenv from "dotenv"
-import cors from "cors"
-import authRoutes from "./Routes/route.js"
+import dotenv from "dotenv";
+import cors from "cors";
+import authRoutes from "./Routes/route.js";
 import connectToMongo from "./DB/connectDb.js";
 import MessageRoutes from "./Routes/message.js";
 import userRoutes from "./Routes/user.js";
@@ -15,30 +15,24 @@ app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 5000;
 dotenv.config();
-app.use(session({ 
-    secret:process.env.JWT_SECRET_KEY, 
-    resave: false, 
-    saveUninitialized: true, 
+app.use(session({
+    secret:process.env.JWT_SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
     cookie: {
             maxAge: 15 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             sameSite: "strict",
             // secure:process.env.NODE_ENV !=="development"
-            secure:true}
-})); 
-  
-
+            secure:false}
+}));
 
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", MessageRoutes);
-app.use("/api/users",userRoutes);
-
-
-
-
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
-    connectToMongo();
-    console.log(`server listening on ${PORT}`);
-})
+  connectToMongo();
+  console.log(`server listening on ${PORT}`);
+});

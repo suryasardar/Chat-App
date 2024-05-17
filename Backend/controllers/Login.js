@@ -16,13 +16,14 @@ const Loginuser = async (req, res) => {
       if (!user||!isPasswordCorrect) {
          return res.status(404).json({ error: "Invalid credentials" });
       }
-      GenarateJwt(user._id, req);
+      const token=GenarateJwt(user._id, req);
 
-      res.status(201).json({
+      res.status(200).json({
          _id: user._id,
          fullName:user.fullName,
          username: user.username,
-         profilePic:user.profilePic
+         profilePic: user.profilePic,
+         token
      })
 
       console.log(req.body);

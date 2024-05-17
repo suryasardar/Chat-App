@@ -33,7 +33,8 @@ const Signupuser = async (req, res) => {
        })
         if (newUser) {
             //jwt token
-            GenarateJwt(newUser._id, req);
+            const token = GenarateJwt(newUser._id);
+            console.log(token,"Jtoken");
             await newUser.save();
 
        res.status(201).json({
@@ -41,7 +42,7 @@ const Signupuser = async (req, res) => {
            fullName:newUser.fullName,
            username: newUser.username,
            profilePic: newUser.profilePic,
-           token:newUser.token
+           token
        })
         } else {
             res.status(404).json({ error :"Invalid data"});
