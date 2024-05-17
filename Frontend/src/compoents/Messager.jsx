@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MesageInput";
 import NoChat from "./NoChat";
 import useconversation from "../Zustand/useconversation";
 
 function Messager() {
-  const {selectedConversation,setSelectedConversation} = useconversation();
-  const noChatSelected = true;
+  const { selectedConversation, setSelectedConversation } = useconversation();
+  // console.log(selectedConversation,"sdjjkl");
+  // const noChatSelected = true;
+
+  useEffect(() => {
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation]);
+
+
   return (
     <div className="w-full  flex flex-col">
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChat />
       ) : (
         <>

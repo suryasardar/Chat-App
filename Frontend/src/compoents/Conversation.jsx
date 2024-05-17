@@ -1,17 +1,27 @@
 import React from "react";
 import chat from "../assets/Chat-app.jpeg";
 import useconversation from "../Zustand/useconversation";
+import useGetConversations from "../ hooks/useGetConversations";
 
 function Conversation({ conversation, lastIdx }) {
+ 
   const { selectedConversation, setSelectedConversation } = useconversation();
+  // setSelectedConversation(conversation)
+
+  console.log(selectedConversation, "data");
   const isSelected = selectedConversation?._id === conversation._id;
-  console.log(conversation.fullName, lastIdx, "data");
+  console.log(conversation.fullName, lastIdx, "surya");
+   
+
+//   const Handleconver=() => {
+//     setSelectedConversation(conversation)
+//  }
   return (
     <>
       <div
         className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py- m-2 cursor-pointer
       ${isSelected ? "bg-sky-500" : ""}`}
-        onClick={()=>setSelectedConversation(conversation)}
+        onClick={()=>{setSelectedConversation(conversation)}}
       >
         <div className="avatar online">
           <div className="w-12 rounded-full">

@@ -2,10 +2,12 @@ import conversation from "../Models/conversation.js";
 import Message from "../Models/messages.js";
 
 const sendMessage = async (req, res) => {
+    console.log(req.body);
     try {
         const { message } = req.body;
         const { id:receiverId } = req.params;
-        const senderId = req.user._id;
+        const senderId = req.userId;
+        console.log(message,receiverId,senderId);
 
      let DM = await conversation.findOne({
             participants: { $all: [senderId, receiverId] }

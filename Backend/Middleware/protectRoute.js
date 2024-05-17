@@ -6,11 +6,13 @@ import User from "../Models/usermodel.js";
 const protectRoute = async (req, res, next) => {
   // const {Jtoken} = GenarateJwt();
   try {
-    if (!req.headers.authorization) {
-      return res.status(401).json({ error: 'Authorization header missing' });
+    if (!req.headers.Authorization || !req.headers.Authorization.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'Invalid Authorization header format' });
     }
-      const token = req.headers.authorization.split(' ')[1];
-    console.log(token, "token");
+    // console.log(req.headers,"surya");
+     
+      const token = req.headers.authorization.split('')[0];
+    console.log(token, "jtoken");
     
     if (!token) {
       return res.status(401).json({ error: "No Token" });
