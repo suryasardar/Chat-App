@@ -33,7 +33,7 @@ const Signupuser = async (req, res) => {
        })
         if (newUser) {
             //jwt token
-            GenarateJwt(newUser._id, res);
+            GenarateJwt(newUser._id, req);
             await newUser.save();
 
        res.status(201).json({

@@ -16,7 +16,7 @@ const Loginuser = async (req, res) => {
       if (!user||!isPasswordCorrect) {
          return res.status(404).json({ error: "Invalid credentials" });
       }
-      GenarateJwt(user._id, res);
+      GenarateJwt(user._id, req);
 
       res.status(201).json({
          _id: user._id,

@@ -6,8 +6,11 @@ import GenarateJwt from "../utils/generatetoken.js";
 const protectRoute = async (req, res, next) => {
   // const {Jtoken} = GenarateJwt();
     try {
-      console.log(req.auth);
-      const token = req.Cookies.auth;
+      // console.log(req.auth);
+      const token = req.cookies.auth;
+      // const token = req.session.token;
+      // const token = Jtoken;
+      
       
       console.log(token,"token");
     if (!token) {

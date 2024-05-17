@@ -6,7 +6,7 @@ import connectToMongo from "./DB/connectDb.js";
 import MessageRoutes from "./Routes/message.js";
 import userRoutes from "./Routes/user.js";
 import cookieParser from "cookie-parser";
-
+import session from "express-session";
 
 const app = express();
 //Midddleware
@@ -15,6 +15,19 @@ app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 5000;
 dotenv.config();
+app.use(session({ 
+    secret:process.env.JWT_SECRET_KEY, 
+    resave: false, 
+    saveUninitialized: true, 
+    cookie: {
+            maxAge: 15 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            sameSite: "strict",
+            // secure:process.env.NODE_ENV !=="development"
+            secure:true}
+})); 
+  
+
 
 //routes
 app.use("/api/auth", authRoutes);
