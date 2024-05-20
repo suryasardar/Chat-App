@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
                  console.log(token, "gettoken");
                  const response = await fetch('http://localhost:5000/api/users/', {
                      headers: {
-                         "Authorization": `Bearer ${ token }`
+                         'Authorization': `Bearer ${ token }`
                     },
                  })
                  const data = await response.json();

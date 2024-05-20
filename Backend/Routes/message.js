@@ -6,7 +6,7 @@ import getMessage from "../controllers/getMessage.js";
 const router = express.Router();
 
 router.post("/send/:id",protectRoute, sendMessage);
-router.get("/:id",getMessage);
+router.get("/:id",protectRoute,getMessage);
 
 
 

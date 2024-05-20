@@ -3,7 +3,7 @@ import { IoSendSharp } from "react-icons/io5";
 import useSendMessage from "../ hooks/useSendMessage";
 
 function MessageInput() {
-  const [messsage, setmessage] = useState();
+  const [messsage, setmessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
   const Handlesubmit = async (e) => {
     e.preventDefault();
