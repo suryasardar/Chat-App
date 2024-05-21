@@ -6,9 +6,9 @@ import LogoutButton from './LogoutButton'
 
 function Sidebar() {
   return (
-      <div className=' h-screen'>
+      <div className=' h-screen overflow-auto inset-0 space-y-3'>
           <SearchImput />
-          <div className='divider px-3'>
+          <div className='divider px-3 '>
                 
           </div>
           <Conversations />

@@ -8,8 +8,8 @@ function LogoutButton() {
   const { loading, Logout } = useLogout();
   // const {authUser} = useAuthContext();
   return (
-      <div className='mt-auto' >
-          <CiLogout className='w-10 h-10 mt-auto cursor-pointer' onClick={Logout}/>
+      <div className='space-y-2' >
+          <CiLogout className='w-10 h-10 text-white cursor-pointer' onClick={Logout}/>
     </div>
   )
 }

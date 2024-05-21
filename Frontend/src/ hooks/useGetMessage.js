@@ -32,7 +32,7 @@ const useGetMessage = () => {
       } finally {
         setTimeout(() => {
           setloading(false);
-        }, 2000);
+        }, 500);
       }
     };
     if (selectedConversation?._id) getMessages();

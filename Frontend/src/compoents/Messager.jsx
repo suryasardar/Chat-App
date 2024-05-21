@@ -15,7 +15,7 @@ function Messager() {
 
 
   return (
-    <div className="w-full  flex flex-col">
+    <div className="w-full  flex flex-col space-y-3 overflow-auto m-3">
       {!selectedConversation ? (
         <NoChat />
       ) : (

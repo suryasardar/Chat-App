@@ -26,7 +26,7 @@ function SearchImput() {
   };
 
   return (
-    <form className="flex items-center gap-2" onSubmit={Handlesubmit}>
+    <form className="flex items-center gap-2 m-3" onSubmit={Handlesubmit}>
       <input
         type="text"
         placeholder="Search"

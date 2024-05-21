@@ -27,7 +27,7 @@ function MessageInput() {
           {loading ? (
             <div className="loading loading-spinner"></div>
           ) : (
-            <IoSendSharp className="w-6 h-6 pl-1 rounded-lg" />
+            <IoSendSharp className="w-6 h-6 pl-1 rounded-lg text-white" />
           )}
         </button>
       </div>
