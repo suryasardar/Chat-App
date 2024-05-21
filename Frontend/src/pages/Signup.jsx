@@ -5,7 +5,7 @@ import useSignup from "../ hooks/useSignup";
 
 const Signup = () => {
   const {loading, signups } = useSignup();
-  console.log(signups,loading, "ok");
+  // console.log(signups,loading, "ok");
 
   const [Input, setInput] = useState({
     fullName: "",
@@ -15,15 +15,15 @@ const Signup = () => {
     gender: "",
   });
 
-  console.log(Input, "input");
+  // console.log(Input, "input");
   const Handlesubmit = async (e) => {
     e.preventDefault();
-    console.log("surya");
+    // console.log("surya");
     await signups(Input);
   };
 
   const HandleCheckBox = (gender) => {
-    console.log(gender);
+    // console.log(gender);
     setInput({ ...Input, gender });
   };
 

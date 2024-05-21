@@ -7,8 +7,9 @@ import MessageRoutes from "./Routes/message.js";
 import userRoutes from "./Routes/user.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import {app, server} from "./socket/socket.js"
 
-const app = express();
+// const app = express();
 //Midddleware
 app.use(cors());
 app.use(express.json());
@@ -32,7 +33,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", MessageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongo();
   console.log(`server listening on ${PORT}`);
 });

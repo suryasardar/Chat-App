@@ -8,9 +8,9 @@ function Conversation({ conversation, lastIdx }) {
   const { selectedConversation, setSelectedConversation } = useconversation();
   // setSelectedConversation(conversation)
 // console.log();
-  console.log(selectedConversation, "data");
+  // console.log(selectedConversation, "data");
   const isSelected = selectedConversation?._id === conversation._id;
-  console.log(conversation.fullName, lastIdx, "surya");
+  // console.log(conversation.fullName, lastIdx, "surya");
    
 
 //   const Handleconver=() => {
