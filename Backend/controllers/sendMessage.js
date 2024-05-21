@@ -1,5 +1,6 @@
 import conversation from "../Models/conversation.js";
 import Message from "../Models/messages.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 const sendMessage = async (req, res) => {
     console.log(req.body);
@@ -31,6 +32,11 @@ const sendMessage = async (req, res) => {
         // await DM.save();
         // await newMessage.save();
         await Promise.all([DM.save(), newMessage.save()]);
+        //socket
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage",newMessage)
+        }
         res.status(201).json(newMessage);
 
     } catch (error) {

@@ -2,28 +2,25 @@ import React from "react";
 import chat from "../assets/Chat-app.jpeg";
 import useconversation from "../Zustand/useconversation";
 import useGetConversations from "../ hooks/useGetConversations";
+import { useSocketContext } from "../context/Socketcontext";
 
 function Conversation({ conversation, lastIdx }) {
- 
   const { selectedConversation, setSelectedConversation } = useconversation();
-  // setSelectedConversation(conversation)
-// console.log();
-  // console.log(selectedConversation, "data");
-  const isSelected = selectedConversation?._id === conversation._id;
-  // console.log(conversation.fullName, lastIdx, "surya");
-   
 
-//   const Handleconver=() => {
-//     setSelectedConversation(conversation)
-//  }
+  const isSelected = selectedConversation?._id === conversation._id;
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
+
   return (
     <>
       <div
         className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py- m-2 cursor-pointer
       ${isSelected ? "bg-sky-500" : ""}`}
-        onClick={()=>{setSelectedConversation(conversation)}}
+        onClick={() => {
+          setSelectedConversation(conversation);
+        }}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic} alt="user avatar" />
           </div>
