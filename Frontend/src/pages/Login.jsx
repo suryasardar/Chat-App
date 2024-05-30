@@ -7,7 +7,7 @@ const Login = () => {
   const { loading,login} = useLogin();
   const [username, setUsername] = useState("");  
   const [password, setPassword] = useState("");
-  console.log(username,password);
+  console.log(username,password,"jj");
   const Handlelogin = async(e) => {
     e.preventDefault();
     await login(username,password)
